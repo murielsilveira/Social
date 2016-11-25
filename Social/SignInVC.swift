@@ -2,11 +2,19 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
     
     @IBOutlet weak var emailText: FancyTextField!
     @IBOutlet weak var passwordText: FancyTextField!
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if Keychain.isUserAuthenticated() {
+            showFeed()
+        }
+    }
     
     @IBAction func facebookButtonTapped(_ sender: UIButton) {
         let facebookLogin = FBSDKLoginManager()
@@ -29,6 +37,7 @@ class SignInVC: UIViewController {
                 print("Unable to auth with Firebase: \(error)")
             } else {
                 print("Successfully authenticated with Firebase")
+                self.completeSignIn(user)
             }
         })
     }
@@ -41,17 +50,29 @@ class SignInVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
                 if error == nil {
                     print("Successfully authenticated with email at Firebase")
+                    self.completeSignIn(user)
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                         if error != nil {
                             print("Unable to create user on Firebase: \(error)")
                         } else {
-                            print("Successfully created user with email on Firebase")
+                            self.completeSignIn(user)
                         }
                     })
                 }
             })
         }
+    }
+    
+    func completeSignIn(_ user: FIRUser?) {
+        if let user = user {
+            Keychain.saveUser(user)
+        }
+        showFeed()
+    }
+    
+    func showFeed() {
+        performSegue(withIdentifier: "goToFeed", sender: nil)
     }
 
 }

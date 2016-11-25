@@ -149,11 +149,54 @@
                     <connections>
                         <outlet property="emailText" destination="lik-iS-jHe" id="8f9-PT-6ej"/>
                         <outlet property="passwordText" destination="gnv-7s-7D9" id="5iJ-mB-WnT"/>
+                        <segue destination="SoS-V5-hAh" kind="show" identifier="goToFeed" id="IW3-QC-MTU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+        </scene>
+        <!--FeedVC-->
+        <scene sceneID="Ogb-fN-0yI">
+            <objects>
+                <viewController id="SoS-V5-hAh" customClass="FeedVC" customModule="Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="a8P-IJ-nQa"/>
+                        <viewControllerLayoutGuide type="bottom" id="bL7-0e-Vnf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pOd-Fh-5KB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohR-1H-Xtb" customClass="FancyButton" customModule="Social" customModuleProvider="target">
+                                <rect key="frame" x="137.5" y="313" width="100" height="40"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Qq1-Nw-paS"/>
+                                    <constraint firstAttribute="width" constant="100" id="sNN-dr-1fm"/>
+                                </constraints>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WPT-5Q-uck"/>
+                                    <action selector="signOutTapped:" destination="SoS-V5-hAh" eventType="touchUpInside" id="Cq0-Nd-2MZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ohR-1H-Xtb" firstAttribute="centerX" secondItem="pOd-Fh-5KB" secondAttribute="centerX" id="VLa-RW-f9E"/>
+                            <constraint firstItem="ohR-1H-Xtb" firstAttribute="centerY" secondItem="pOd-Fh-5KB" secondAttribute="centerY" id="aqF-NX-c7T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="goToSignIn" id="vO1-8W-qSD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICP-hF-sZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="980" y="138.98050974512745"/>
         </scene>
     </scenes>
     <resources>
