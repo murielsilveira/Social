@@ -107,7 +107,7 @@
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppY-dR-1T1" customClass="FancyButton" customModule="Social" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="90" width="250" height="40"/>
@@ -115,9 +115,12 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="R3t-LM-8QM"/>
                                         </constraints>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Sign In">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cpY-EE-pMC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -143,6 +146,10 @@
                             <constraint firstItem="hYk-Ld-cMs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tgs-rx-bWQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailText" destination="lik-iS-jHe" id="8f9-PT-6ej"/>
+                        <outlet property="passwordText" destination="gnv-7s-7D9" id="5iJ-mB-WnT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
