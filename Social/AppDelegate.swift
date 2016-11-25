@@ -1,13 +1,6 @@
-//
-//  AppDelegate.swift
-//  Social
-//
-//  Created by Muriel Silveira Pereira on 22/11/16.
-//  Copyright © 2016 Muriel Silveira Pereira. All rights reserved.
-//
-
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 
 @UIApplicationMain
@@ -20,11 +13,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FIRApp.configure()
-        
-//        FBSDKApplicationDelegate.sharedInstance().application
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
-
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

@@ -1,25 +1,33 @@
-//
-//  ViewController.swift
-//  Social
-//
-//  Created by Muriel Silveira Pereira on 22/11/16.
-//  Copyright © 2016 Muriel Silveira Pereira. All rights reserved.
-//
-
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Firebase
 
 class SignInVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBAction func facebookButtonTapped(_ sender: UIButton) {
+        let facebookLogin = FBSDKLoginManager()
+        facebookLogin.logIn(withReadPermissions: ["email"], from: self, handler: { (result, error) in
+            if error != nil {
+                print("Unable to auth with Facebook: \(error)")
+            } else if result?.isCancelled == true {
+                print("User canceled Facebook auth")
+            } else {
+                print("Successfully authenticated with Facebook")
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                self.firebaseAuth(credential)
+            }
+        })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func firebaseAuth(_ credential: FIRAuthCredential) {
+        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+            if error != nil {
+                print("Unable to auth with Facebook: \(error)")
+            } else {
+                print("Successfully authenticated with Firebase")
+            }
+        })
     }
-
 
 }
-
